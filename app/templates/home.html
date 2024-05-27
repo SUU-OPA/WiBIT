@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block head %}
+    <title>Wirtualne Biuro Informacji Turystycznej</title>
+{% endblock %}
+
+{% block body %}
+<div>
+    <h1 class="title-header menu-header"> Witamy w wirtualnym biurze informacji turystycznej </h1>
+
+    <div class="row justify-content-center">
+
+        <a href="{{url_for('show_quick_trip')}}" class="main-page-option col-11 col-md-5 col-lg-4">
+            Szybka wycieczka
+        </a>
+
+        <a href="{{url_for('choose_region')}}" class="main-page-option col-11 col-md-5 col-lg-4">
+            Podaj preferencje w ankiecie
+        </a>
+
+        <!--<a href="{url_for('show_chatbot')}}" class="main-page-option col-11 col-md-5 col-lg-4">
+            Podaj preferencje przez chat
+        </a>-->
+
+        <a href="{{url_for('choose_region_file')}}" class="main-page-option col-11 col-md-5 col-lg-4">
+            Podaj preferencje przez plik tekstowy
+        </a>
+
+    </div>
+
+</div>
+{% endblock %}

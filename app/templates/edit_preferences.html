@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block head %}
+    <title>Edit preferences</title>
+{% endblock %}
+
+{% block body %}
+<div>
+    <h1 class="title-header"> Wybór ogólnych kategorii atrakcji turystycznych </h1>
+    <h2 class="title-disclaimer"> Możesz zaznaczyć kategorie atrakcji, które najbardziej cię interesują, będą one uwzględniane we wszystkich Twoich wycieczkach </h2>
+
+    <form class="form" id="category_form" action="{{redirect}}" method="POST">
+        <div class="container">
+            {% for cat in categories %}
+                <div class="one-line">
+                    <div class="main_category">
+                        {% if cat['selected'] %}
+                            <input class="not-displayed select-checkbox" name="cat_{{ cat['main']['code']}}"
+                                   id="{{ cat['main']['code']  }}" type="checkbox" checked>
+                        {% else %}
+                            <input class="not-displayed select-checkbox" name="cat_{{ cat['main']['code']}}"
+                                   id="{{ cat['main']['code']  }}" type="checkbox">
+                        {% endif %}
+
+                        <label class="base-label region-label" for="{{ cat['main']['code']  }}">{{ cat['main']['name']  }}</label>
+                    </div>
+                    <div class="subcategories">
+                        {% for sub in cat['sub'] %}
+                            <div class="item">
+                                {% if sub['selected']%}
+                                    <input class="not-displayed select-checkbox" name="cat_{{ sub['category']['code']}}"
+                                        id="{{ sub['category']['code']  }}" type="checkbox" checked>
+                                {% else %}
+                                    <input class="not-displayed select-checkbox" name="cat_{{ sub['category']['code']}}"
+                                        id="{{ sub['category']['code']  }}" type="checkbox">
+                                {% endif %}
+
+                                <label class="base-label region-label" for="{{ sub['category']['code']  }}">{{ sub['category']['name']  }}</label>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+            {% endfor %}
+
+            <div class="row justify-content-center">
+                <button class="base-button col-11 col-md-7">Zapisz</button>
+                <a href="{{url_for('user_main_page')}}" class="base-button col-11 col-md-7">
+                    Powrót
+                </a>
+            </div>
+        </div>
+
+    </form >
+</div>
+{% endblock %}

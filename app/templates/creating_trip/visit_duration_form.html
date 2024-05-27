@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block head %}
+    <title>visit time</title>
+{% endblock %}
+
+{% block body %}
+<div>
+    <h1 class="title-header">Wybierz długość wycieczki</h1>
+    <form method="POST" id="duration_form">
+        <label for="duration_dropdown"> Czas trwania wycieczki</label><br>
+        <select id="duration_dropdown" name="duration_dropdown" required>
+            <option value="" disabled selected>Długość wycieczki</option>
+            {% for option in options %}
+            <option value={{option['time']}}>{{option['name']}}</option>
+            {% endfor %}
+        </select>
+        <br>
+        <input type="submit" value="Dalej" class="base-button">
+    </form>
+</div>
+{% endblock %}

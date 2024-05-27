@@ -1,0 +1,123 @@
+{% extends 'base.html' %}
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/chat_toggle.css') }}">
+
+    <title>Wirtualne Biuro Informacji Turystycznej</title>
+{% endblock %}
+
+{% block body %}
+<body>
+    <h1 class="chat-title"> Chatbot WiBIT</h1>
+
+    <div class="row justify-content-center chatbot-block">
+
+        {% for message in messages %}
+            {% if message.author == 'bot' %}
+                <div class="message-chatbot col-11 col-md-9 col-lg-7">
+                    <h4>WiBIT</h4>
+                    <div class="inner-message-chatbot inner-message">
+                        {{ message.text }}
+                    </div>
+                </div>
+
+            {% elif message.author == 'user' %}
+                <div class="message-user col-11 col-md-9 col-lg-7">
+                    <h4>{{ user_name }}</h4>
+                    <div class="inner-message-user inner-message">
+                        {{ message.text }}
+                    </div>
+                </div>
+
+            {% elif message.author == 'bot_final' %}
+                <div class="message-chatbot col-11 col-md-9 col-lg-7">
+                    <h4>WiBIT</h4>
+                    <div class="inner-message-chatbot inner-message">
+                        <p> {{ message.text }} </p>
+                        <div>
+                            <a href="{{url_for('show_suggested')}}" class="trip-additional-button button-in-chatbot">
+                                Pokaż moją wycieczkę
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+
+        {% endfor %}
+
+        <div class="message-user new-message-container col-11 col-md-9 col-lg-7">
+            {% if not is_finished %}
+                <h4>{{ user_name }}</h4>
+                <form method="POST">
+                    <textarea id="message-textarea" name="user_text" rows="3" required="required"></textarea>
+                    <input class="message-submit" type="submit" value="Prześlij">
+
+                    <div id="div-yesnotoggle">
+                        <div id="div-notext" class="div-label-text">
+                            <h5>Doświadczony przewodnik</h5> <h5 id="notext-info">i</h5>
+                        </div>
+                        <div id="div-switch">
+                            <label class="switch">
+                                {% if mode_checked %}
+                                <input type="checkbox" name="chatbot_mode" checked>
+                                {% else %}
+                                <input type="checkbox" name="chatbot_mode">
+                                {% endif %}
+                                <div class="slider round"></div>
+                            </label>
+                        </div>
+                        <div id="div-yestext" class="div-label-text">
+                            <h5>Przewodnik z dużą wiedzą</h5> <h5 id="yestext-info">i</h5>
+                        </div>
+                    </div>
+                </form>
+            {% endif %}
+             <form id="reset-chatbot-form" action="/reset-chatbot" method="post">
+                 <input class="message-submit" type="submit" value="Zacznij od początku">
+             </form>
+        </div>
+
+    </div>
+
+</body>
+<script>
+    function scrollToBottom() {
+        var chatbotBlock = document.querySelector('.chatbot-block');
+        chatbotBlock.scrollTop = chatbotBlock.scrollHeight;
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+            var tooltip = document.createElement("div");
+            tooltip.id = "tooltip";
+            document.body.appendChild(tooltip);
+
+            document.addEventListener("mousemove", function(event) {
+                var x = event.clientX - 262;
+                var y = event.clientY + 6;
+                tooltip.style.left = x + "px";
+                tooltip.style.top = y + "px";
+            });
+
+            document.getElementById('yestext-info').addEventListener("mouseover", function() {
+                tooltip.style.display = "block";
+                tooltip.innerHTML = "Przewodnik układa plan wycieczki w oparciu o swoją wiedzę dotyczącą atrakcji turystycznych.";
+            });
+
+            document.getElementById('yestext-info').addEventListener("mouseout", function() {
+                tooltip.style.display = "none";
+            });
+
+            document.getElementById('notext-info').addEventListener("mouseover", function() {
+                tooltip.style.display = "block";
+                tooltip.innerHTML = "Przewodnik układa plan wycieczki bazując na tym, co lubią inni turyści.";
+            });
+
+            document.getElementById('notext-info').addEventListener("mouseout", function() {
+                tooltip.style.display = "none";
+            });
+        });
+
+
+scrollToBottom()
+</script>
+
+{% endblock %}

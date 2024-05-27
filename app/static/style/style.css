@@ -1,0 +1,462 @@
+body{
+    padding: 0;
+}
+
+html::before {
+    content: "";
+    background-image: url("img.png");
+    background-position: center;
+    background-size: cover;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    opacity: 0.17;
+}
+
+input, select {
+    background: whitesmoke;
+}
+
+h1, h2, h3{
+    text-align: center;
+    width: 100%;
+}
+
+input, select{
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 6px;
+    background-color: white;
+    font-size: large;
+}
+
+.title-header{
+    margin: 6vh 5% 2vh 5%;
+    width: 90%;
+}
+
+.menu-header{
+    margin: 10vh 5% 10vh 5%;
+}
+
+.title-disclaimer{
+    width: 80%;
+    margin: 4vh 10%;
+    font-weight: normal;
+    font-size: larger;
+}
+
+@media only screen and (max-width: 992px) {
+    .title-header, .menu-header{
+        margin: 4vh 5%;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .title-header, .menu-header{
+        margin: 0 5% 24px 5%;
+    }
+}
+
+/* main page */
+.main-page-option{
+    text-align: center;
+    text-decoration: none;
+    padding: 50px 20px;
+    font-size: 18px;
+    color: black;
+    border: 1px solid black;
+    border-radius: 5px;
+    margin: 10px 5px 0 5px;
+}
+
+.main-page-option:hover{
+    text-decoration: none;
+    color: black;
+    box-shadow: 2px 2px 4px black;
+}
+
+/* default page */
+
+.main-text{
+    width: 100%;
+    text-align: center;
+    font-size: 4vh;
+}
+
+.select-checkbox:checked~.base-label{
+    background-color: #A5D485;
+}
+
+/* choose category page */
+
+.container{
+    display: flex;
+    flex-direction: column;
+    row-gap: 1vh;
+    width: 100%;
+    margin-top: 5vh;
+    text-align: center;
+}
+
+#subcategory_form, #main_category_form{
+    position: relative;
+    width: 50%;
+    left: 25%;
+    padding-top:10vh;
+}
+
+#subcategory_form{
+    display: none;
+}
+
+.next-button{
+    width: 25%;
+    padding: 6px 20px 6px 20px;
+    margin: 5vh auto 0 auto;
+    text-align: center;
+}
+
+/* suggested trip page */
+.maps_container{
+    padding: 0 10% 0 10%;
+}
+
+.maps_container h4{
+    margin-top: 32px;
+    text-align: center;
+    font-weight: bolder;
+}
+
+
+@media only screen and (max-width: 768px) {
+    .maps_container{
+        padding: 0 15px 0 15px;
+    }
+}
+
+
+.one-line{
+    display: flex;
+    width: 100%;
+    padding: 10px;
+    flex-direction: row;
+    text-align: center;
+    justify-content: center;
+}
+
+.oen-column{
+    display: flex;
+    width: 100%;
+    padding: 10px;
+    flex-direction: column;
+}
+
+.big-map{
+    width: 100%;
+    height: 700px;
+    padding: 20px;
+    margin-bottom: 10px;
+}
+
+
+@media only screen and (max-width: 768px) {
+    .big-map {
+        height: 360px;
+    }
+}
+
+.folium-map{
+    border: 1px solid black;
+    border-radius: 5px;
+    box-shadow: 1px 1px 3px black;
+    height: 100%;
+}
+
+.base-button{
+    padding: 8px 20px 8px 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+    font-size: medium;
+    background-color:  whitesmoke;
+    border: 1px solid black;
+    border-radius: 5px;
+    min-width: 128px;
+    text-decoration: none;
+    color: black;
+}
+
+.base-button:hover{
+    box-shadow: 2px 2px 4px black;
+    color: black;
+    text-decoration: none;
+}
+
+.trip-place-name{
+    text-align: right;
+    width: 70%;
+    padding: 16px 0 6px 0;
+    font-size: large;
+}
+
+.trip-place-name-wide{
+    text-align: center;
+    width: 100%;
+    padding: 16px 0 6px 0;
+}
+
+.suggested-form{
+    text-align: center;
+    margin-top: 30px;
+}
+
+.suggested-form-button{
+    margin: 10px;
+}
+
+.not-displayed{
+    display: none;
+}
+
+.base-label{
+    margin: auto auto auto 5vw;
+    padding: 1vh 1vw 1vh 1vw;
+    border-radius: 3vh;
+    text-align: center;
+}
+
+.region-label, .centered-label{
+    margin: 3px 6px;
+    padding-right: 16px;
+    padding-left: 16px;
+}
+
+.remove-checkbox:checked+.base-label{
+    background-color: #c28484;
+}
+
+.replace-checkbox:checked+.base-label{
+    background-color: #C99E6C;
+}
+
+/* duration form */
+#duration_form{
+    position: relative;
+    width: 50%;
+    left: 25%;
+    padding-top: 5vh;
+    text-align: center;
+}
+
+.centered-form{
+    position: relative;
+    width: 50%;
+    left: 25%;
+    padding-top: 5vh;
+    text-align: center;
+}
+
+@media only screen and (max-width: 768px) {
+    .centered-form {
+        width: 90%;
+        left: 7%;
+    }
+
+    .edit-trip-label{
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+}
+
+.popup{
+    width: 10vw;
+    height: 18vh;
+}
+
+.span-label{
+    margin: auto 3vw auto 3vw;
+}
+
+.message-chatbot{
+    text-align: left;
+    margin-top: 20px;
+}
+
+.message-user{
+    text-align: right;
+    margin-top: 20px;
+}
+
+.inner-message{
+    border: 1px solid black;
+    width: 80%;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.inner-message-user{
+    margin-left: 20%;
+    background-color: rgba(201, 158, 108, 0.7);
+}
+
+#message-textarea{
+    width: 100%;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.new-message-container{
+    margin-top: 20px;
+}
+
+.message-submit {
+    background-color: whitesmoke;
+    height: fit-content;
+    width: fit-content;
+    font-weight: bold;
+    font-size: larger;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 5px 30px;
+    margin: 10px 10px 10px 0;
+}
+
+.message-submit:hover {
+    box-shadow: 2px 2px 4px black;
+}
+
+.chat-title{
+    margin: 1vh 5% 1vh 5%;
+    width: 90%;
+}
+
+.auth-form{
+    text-align: center;
+}
+
+.auth-form form input{
+    margin: 2px 10px 10px 10px;
+    text-align: center;
+    border: 1px solid black;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.auth-form form input#submit{
+    background-color:  whitesmoke;
+    width: 228px;
+    text-align: center;
+}
+
+.auth-form form input#submit:hover{
+    box-shadow: 2px 2px 4px black;
+}
+
+.auth-alert{
+    margin: 20px 0 20px 0;
+    text-align: center;
+    color: darkred;
+    font-weight: bold;
+}
+
+.auth-proposition-link{
+    margin: 30px 0 10px 0;
+    text-align: center;
+}
+
+.user-login div{
+    margin: 10px 0;
+    text-align: center;
+}
+
+.user-login a {
+    display: block;
+    width: 100%;
+    color: black;
+    text-decoration: none;
+    border: 1px solid black;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.user-login a:hover{
+    text-decoration: none;
+    color: black;
+    box-shadow: 2px 2px 4px black;
+}
+
+.chatbot-block{
+    height: 80vh;
+    overflow-y: scroll;
+}
+
+#save-trip-form{
+    text-align: center;
+
+}
+
+.saved-trip-banner{
+    text-align: center;
+    text-decoration: none;
+    padding: 10px;
+    font-size: medium;
+    color: black;
+    border: 1px solid black;
+    border-radius: 5px;
+    margin: 10px 5px;
+}
+
+.saved-trip-banner p{
+    margin-bottom: 4px;
+}
+
+.saved-trip-banner:hover{
+    text-decoration: none;
+    color: black;
+    box-shadow: 2px 2px 4px black;
+}
+
+.trip-additional-button{
+    display:block;
+    width: 97%;
+    text-align: center;
+    text-decoration: none;
+    padding: 10px;
+    font-size: medium;
+    background-color: whitesmoke;
+    color: black;
+    border: 1px solid black;
+    border-radius: 5px;
+    margin: 10px 5px;
+}
+
+.trip-additional-button:hover{
+    text-decoration: none;
+    color: black;
+    box-shadow: 2px 2px 4px black;
+}
+
+.button-in-chatbot{
+    padding: 6px;
+    margin: 6px 6px 6px 10%;
+    width: 80%;
+    background-color: whitesmoke;
+    font-weight: bold;
+}
+
+.button-in-chatbot:hover {
+    color: black;
+    box-shadow: 2px 2px 4px black;
+}
+
+/* edit preferences */
+
+#subcategories{
+    display: flex;
+    flex-direction: column;
+}
