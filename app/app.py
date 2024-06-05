@@ -9,6 +9,7 @@ from odf import text, teletype
 from odf.opendocument import load
 
 from display_route import create_map
+from check_policies import check_auth_policies
 from creating_trip.categories.estimated_visiting import VisitingTimeProvider
 from creating_trip.poi_provider import PoiProvider
 from creating_trip.algorythm_models.user_in_algorythm import User as Algo_User
@@ -231,6 +232,16 @@ def get_region_from_request(req):
 
 @app.route('/region', methods=['GET', 'POST'])
 def choose_region():
+    username = ""
+    if current_user.is_authenticated:
+        username = current_user.login
+    token = request.args["token"] if "token" in request.args else None
+    j = check_auth_policies(username, 'survey', request.method, token).get("result", {})
+    if not j.get("allow", False):
+        return "Error: user %s is not authorized to %s url /%s \n" % (username, request.method, 'survey')
+
+    print("Success: user %s is authorized \n" % username)
+
     if request.method == 'GET':
         available = poi_provider.get_available_attraction_sets()
 
@@ -535,6 +546,16 @@ def show_date_duration():
 
 @app.route('/quick-trip', methods=['GET', 'POST'])
 def show_quick_trip():
+    username = ""
+    if current_user.is_authenticated:
+        username = current_user.login
+    token = request.args["token"] if "token" in request.args else None
+    j = check_auth_policies(username, 'quick-trip', request.method, token).get("result", {})
+    if not j.get("allow", False):
+        return "Error: user %s is not authorized to %s url /%s \n" % (username, request.method, 'quick_trip')
+
+    print("Success: user %s is authorized \n" % username)
+
     duration_options = [
         {'name': 'Jeden dzień', 'time': 1},
         {'name': 'Dwa dni', 'time': 2},
